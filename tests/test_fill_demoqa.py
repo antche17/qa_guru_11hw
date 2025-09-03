@@ -25,7 +25,7 @@ def test_fill_demoqa(setup_browser):
         browser.element('.react-datepicker__day--001').click()
 
         browser.element('#subjectsInput').type('English').press_enter()
-        browser.element('label[for="hobbies-checkbox-3"]').click()
+        browser.element('label[for="hobbies-checkbox-3"]').with_(click_by_js=True).click()
 
         browser.element('#uploadPicture').send_keys(file_path)
 
