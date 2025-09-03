@@ -44,6 +44,22 @@ def remote_browser_setup():
         options=options)
 
     browser.config.driver = driver
+
+    def hide_ads():
+        browser.execute_script("""
+            const ads = document.querySelectorAll('iframe[id^="google_ads_iframe"]');
+            ads.forEach(ad => ad.remove());
+        """)
+
+    # ----------------- Хелпер для безопасного JS-клика -----------------
+    def click_element(selector):
+        hide_ads()  # удаляем рекламу перед кликом
+        browser.element(selector).with_(click_by_js=True).click()
+
+    # Делаем доступными эти функции через browser для тестов
+    browser.hide_ads = hide_ads
+    browser.click_element = click_element
+
     yield browser
     attach.add_logs(browser)
     attach.add_html(browser)

@@ -32,9 +32,9 @@ def test_fill_demoqa(setup_browser):
         browser.element('#currentAddress').type("Пушкинская 23")
 
         browser.element('#state').click()
-        browser.element('#react-select-3-option-3').click()
+        browser.element('#react-select-3-option-3').with_(click_by_js=True).click()
         browser.element('#city').click()
-        browser.element('#react-select-4-option-1').click()
+        browser.element('#react-select-4-option-1').with_(click_by_js=True).click()
 
         browser.element('#submit').click()
 
